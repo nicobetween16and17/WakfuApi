@@ -4,6 +4,7 @@ const router = require ('express').Router();
 /*require('./productAPI')(router);*/
 
 require('./itemAPI')(router);
+require('./actionAPI')(router)
 
 
 module.exports = router;
