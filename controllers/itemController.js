@@ -72,9 +72,10 @@ module.exports = {
         const {ref,range,type} = req.params
         const level = parseInt(ref)
         const rarities = range.split('_').map(Number)
+        const types = type.split('_').map(Number)
         Item.find(
             { 'definition.item.level': { $gte: level-15, $lte: level } }
-        ).find({'definition.item.baseParameters.itemTypeId':type}).where('definition.item.baseParameters.rarity').in(rarities).sort({'definition.item.level':-1})
+        ).where('definition.item.baseParameters.rarity').in(rarities).where('definition.item.baseParameters.itemTypeId').in(types).sort({'definition.item.level':-1})
             .then(item => {
 
                 if (item) {
